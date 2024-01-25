@@ -1,0 +1,22 @@
+<!doctype html>
+    <html lang="">
+        <head> 
+            <meta charset="UTF-8">
+            <title></title>
+        </head>
+        <body>
+            <script>
+                
+                function encontrarPares(numeros) {
+                var numerosPares = numeros.filter(numero => numero % 2 === 0);
+
+                var numerosParesOrdenados = numerosPares.sort((a, b) => b - a);
+                return numerosParesOrdenados;
+                }
+
+                var arregloNumeros = [5, 10, 3, 8, 1, 6];
+                var numerosParesOrdenados = encontrarPares(arregloNumeros);
+                console.log("Los numeros pares ordenados de mayor a menos son: " + numerosParesOrdenados);
+            </script>
+        </body>
+    </html>
