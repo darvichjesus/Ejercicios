@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulación del DOM con JavaScript</title>
+    <style>
+        /* Puedes agregar estilos CSS aquí según sea necesario */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-list li {
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .widget {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        #clock {
+            font-size: 2em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Manipulación del DOM con JavaScript</h1>
+
+    <div class="container">
+        <h2>Ejercicio 1: Cambiar el Texto del Elemento</h2>
+        <p id="changeText">Este es un texto inicial.</p>
+        <button onclick="changeText()">Cambiar Texto</button>
+    </div>
+
+    <div class="container">
+        <h2>Ejercicio 2: Agregar un Nuevo Elemento</h2>
+        <div id="containerToAdd"></div>
+        <button onclick="addNewElement()">Agregar Elemento</button>
+    </div>
+
+    <div class="container">
+        <h2>Ejercicio 3: Modificar Estilos Dinámicamente</h2>
+        <p class="changeStyle">Haz clic para cambiar el estilo.</p>
+        <button onclick="changeStyle()">Cambiar Estilo</button>
+    </div>
+
+    <div class="container">
+        <h2>Ejercicio 4: Eliminar Elementos</h2>
+        <ul class="task-list" onclick="deleteTask(event)">
+            <li>Tarea 1</li>
+            <li>Tarea 2</li>
+            <li>Tarea 3</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Ejercicio 5: Widget Interactivo</h2>
+        <div class="widget" id="interactiveWidget">
+            <label for="timeFormat">Formato de Hora:</label>
+            <select id="timeFormat">
+                <option value="12">12 horas</option>
+                <option value="24">24 horas</option>
+            </select>
+            <br>
+            <label for="backgroundColor">Color de Fondo:</label>
+            <input type="color" id="backgroundColor" value="#ffffff">
+            <br>
+            <div id="clock">12:00:00</div>
+            <br>
+            <button onclick="updateWidget()">Actualizar Widget</button>
+        </div>
+    </div>
+
+    <script>
+        // Este es el ejercicio 1
+        function changeText() {
+            var text = document.getElementById("changeText");
+            text.innerHTML = "Nuevo texto";
+        }
+
+        // Este es el ejercicio 2
+        function addNewElement() {
+            var contenedor = document.getElementById('containerToAdd');
+            var elemento = document.createElement('div');
+            elemento.id = 'containerToAdd';
+            contenido = document.createTextNode('Contenido agregado');
+            elemento.appendChild(contenido);
+            contenedor.appendChild(elemento);
+        }
+
+        // Este es el ejercicio 3
+        function changeStyle() {
+            var elemento = document.querySelector('.changeStyle');
+            var colores = ["red", "blue", "green", "orange", "purple"];
+            var colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+            elemento.style.color = colorAleatorio;
+        }
+
+        // Este es el ejercicio 4
+        function deleteTask(event) {
+            if (event.target.tagName === 'LI') {
+                event.target.remove();
+            }
+        }
+
+        // Este es el ejercicio 5
+        function updateWidget() {
+            var timeFormat = document.getElementById('timeFormat').value;
+            var backgroundColor = document.getElementById('backgroundColor').value;
+            var clockDiv = document.getElementById('clock');
+
+            setInterval(function () {
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+
+                if (timeFormat === '12') {
+                    hours = (hours > 12) ? hours - 12 : hours;
+                    hours = (hours == 0) ? 12 : hours;
+                }
+
+                hours = (hours < 10) ? "0" + hours : hours;
+                minutes = (minutes < 10) ? "0" + minutes : minutes;
+                seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                clockDiv.innerText = hours + ":" + minutes + ":" + seconds;
+            }, 1000);
+
+            document.getElementById('interactiveWidget').style.backgroundColor = backgroundColor;
+        }
+    </script>
+
+</body>
+
+</html>
+
