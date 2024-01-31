@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <label for="nombres">Ingrese una lista de nombres (separados por comas):</label>
+  <input type="text" id="nombres" required>
+  <br><br>
+  <button onclick="imprimirNombres()">Imprimir</button>
+
+  <script>
+    function imprimirNombres() {
+      var nombresInput = document.getElementById("nombres");
+      var nombres = nombresInput.value.split(",");
+
+      nombres.forEach(function(nombre) {
+        var p = document.createElement("p");
+        p.textContent = nombre;
+        document.body.appendChild(p);
+      });
+    }
+  </script>
+</body>
+</html>

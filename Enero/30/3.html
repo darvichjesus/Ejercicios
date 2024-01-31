@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Promedio de calificaciones</h2>
+
+  <div id="resultados"></div>
+
+  <script>
+    function calcularPromedio(array) {
+      var sum = 0;
+      for (var i = 0; i < array.length; i++) {
+        sum += array[i];
+      }
+      var promedio = sum / array.length;
+      return promedio;
+    }
+
+    var calificaciones = {
+      "Estudiante 1": [80, 90, 70],
+      "Estudiante 2": [85, 75, 95],
+      "Estudiante 3": [90, 80, 85]
+    };
+
+    var resultadosDiv = document.getElementById("resultados");
+    for (var estudiante in calificaciones) {
+      var promedio = calcularPromedio(calificaciones[estudiante]);
+      var resultado = estudiante + ": " + promedio.toFixed(2);
+      var p = document.createElement("p");
+      p.textContent = resultado;
+      resultadosDiv.appendChild(p);
+    }
+  </script>
+</body>
+</html>
